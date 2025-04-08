@@ -34,5 +34,5 @@ app.use((req, res) => {
     res.redirect('/');
 });
 
-const port = 3000;
+const port = 3333;
 app.listen(port, () => console.log(`Book Review App running on port ${port}`));
