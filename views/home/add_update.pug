@@ -1,0 +1,42 @@
+extends ../layout.pug
+
+block content
+  .container.mt-5
+    h1 Book Reviews
+    a.btn.btn-primary.mb-3(href="/add") Add New Review
+    table.table.table-hover
+      thead
+        tr
+          th Title
+          th Author
+          th Rating
+          th Actions
+      tbody#books-table
+        each book in books
+          tr(data-id=book.id)
+            td= book.title
+            td= book.author
+            td= book.rating
+            td
+              a.btn.btn-sm.btn-primary(href=`/update/${book.id}`) Edit
+              button.btn.btn-sm.btn-danger.ms-2(
+                onclick=`deleteBook('${book.id}')`
+              ) Delete
+
+block scripts
+  script.
+    function deleteBook(id) {
+      if (confirm('Are you sure you want to delete this book?')) {
+        fetch(`/api/books/${id}`, {
+          method: 'DELETE'
+        })
+        .then(response => {
+          if (response.ok) {
+            document.querySelector(`tr[data-id="${id}"]`).remove();
+          } else {
+            alert('Failed to delete book');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      }
+    }
