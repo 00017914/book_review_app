@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
+
 
 
 // Mock database for book reviews (JSON file)
@@ -17,6 +19,7 @@ app.set('view engine', 'pug');
 // Static files (CSS/JS)
 app.use('/css', express.static('public/css'));
 app.use('/js', express.static('public/js'));
+app.use(cors());
 
 // Parse JSON and form data
 app.use(express.json());
