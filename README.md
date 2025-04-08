@@ -101,6 +101,6 @@
 
 # LINKS
 ## GitHub repository : https://github.com/00017914/book_review_app.git
-## Hosted website
+## Hosted website : http://95.47.124.171:3333/
 
                             
