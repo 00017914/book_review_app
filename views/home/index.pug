@@ -1,22 +1,16 @@
 extends ../layout.pug
 
 block content
-  .container.mt-5
-    h1 Book Reviews
-    a.btn.btn-primary.mb-3(href="/add") Add New Review
-    table.table.table-hover
-      thead
-        tr
-          th Title
-          th Author
-          th Rating
-          th Actions
-      tbody
-        each book in books
-          tr
-            td= book.title
-            td= book.author
-            td= book.rating
-            td
-              a.btn.btn-sm.btn-primary(href=`/update?id=${book.id}`) Edit
-              button.btn.btn-sm.btn-danger.ms-2 Delete
+  h1 Book Reviews
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Rating
+        th Review
+    tbody#books-list
+      //- Will be populated by JavaScript
+
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+  script(src="/js/home.js")

@@ -1,25 +1,35 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
-const webRoutes = require('./routes/web');  // Changed variable name
+const path = require('path');
 
+
+// Mock database for book reviews (JSON file)
 global.mock_db = path.join(__dirname, './data/mock_db.json');
+
+const webRoutes = require('./routes/web');
+const apiRoutes = require('./routes/api');
 
 const app = express();
 
-// engine setup
-app.set('views', path.join(__dirname, 'views'));
+// Pug setup for web views
 app.set('view engine', 'pug');
 
-// static
-app.use('/css', express.static(path.join(__dirname, 'public/css')));
-app.use('/js', express.static(path.join(__dirname, 'public/js')));
+// Static files (CSS/JS)
+app.use('/css', express.static('public/css'));
+app.use('/js', express.static('public/js'));
 
-// Body parser
-app.use(bodyParser.urlencoded({ extended: true }));
+// Parse JSON and form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-//routes
-app.use('/', webRoutes);
+// Routes
+app.use('/api', apiRoutes); // API endpoints
+app.use('/', webRoutes);    // Web interface
 
-const port = 3002;
-app.listen(port, () => console.log(`Book review app running on port ${port}`));
+// Redirect invalid requests to home
+app.use((req, res) => {
+    res.redirect('/');
+});
+
+const port = 3000;
+app.listen(port, () => console.log(`Book Review App running on port ${port}`));

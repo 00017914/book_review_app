@@ -1,0 +1,16 @@
+[
+  {
+      "id": 1,
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "rating": 4.5,
+      "review": "A fantastic adventure!"
+  },
+  {
+      "id": 2,
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "rating": 5,
+      "review": "Sci-fi masterpiece."
+  }
+]
